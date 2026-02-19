@@ -1,7 +1,4 @@
-from cryptocurrencies import getPrice
-from passGen import genPass
-from passRate import ratePass
-
+from func import getPrice, genPass, ratePass
 
 print(" __  __  _____  _   _  _   _ ")
 print("|  \/  || ____|| \ | || | | |")
