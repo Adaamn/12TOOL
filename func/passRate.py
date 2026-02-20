@@ -1,4 +1,4 @@
-#  ____      _     ____   ____  __        __  ___   ____   ____     ____      _     _____  _____ 
+""" #  ____      _     ____   ____  __        __  ___   ____   ____     ____      _     _____  _____ 
 # |  _ \    / \   / ___| / ___| \ \      / / / _ \ |  _ \ |  _ \   |  _ \    / \   |_   _|| ____|
 # | |_) |  / _ \  \___ \ \___ \  \ \ /\ / / | | | || |_) || | | |  | |_) |  / _ \    | |  |  _|  
 # |  __/  / ___ \  ___) | ___) |  \ V  V /  | |_| ||  _ < | |_| |  |  _ <  / ___ \   | |  | |___ 
@@ -34,4 +34,4 @@ def ratePass(password):
             what.append("upper symbol")
         if not num:
             what.append("number")
-        return print("Your password is not safe, missing:",", ".join(what) )
+        return print("Your password is not safe, missing:",", ".join(what) ) """

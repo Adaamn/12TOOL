@@ -1,4 +1,4 @@
-from func import getPrice, genPass, ratePass
+from func import getPrice, genPass, Scan
 
 print(" __  __  _____  _   _  _   _ ")
 print("|  \/  || ____|| \ | || | | |")
@@ -8,8 +8,8 @@ print("|_|  |_||_____||_| \_| \___/ ")
 print("")
 
 print("[1] - Password Generator")
-print("[2] - Password Rate")
-print("[3] - Cryptocurrency price")
+print("[2] - Cryptocurrency price")
+print("[3] - IPScan")
 print("[4] - Exit")
 print("")
 
@@ -29,10 +29,6 @@ while True:
         print(f"Generated password: {genPass(passlength)}")
 
     elif choice == 2:
-        typePass = input("\nEnter the password you want to rate: ")
-        ratePass(typePass)
-
-    elif choice == 3:
         crypto = input("\nType a cryptocurrency: ").strip().lower()
         usd, eur, czk, cryptoName = getPrice(crypto)
         if usd != None:
@@ -40,5 +36,9 @@ while True:
             print(f"USD: {usd:,}")
             print(f"EUR: {eur:,}")
             print(f"CZK: {czk:,}")
+    
+    elif choice == 3:
+        Scan()
+
     elif choice == 4:
         break

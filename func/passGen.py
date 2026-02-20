@@ -16,7 +16,6 @@ def genPass(passLength):
 
     fpassword = []
     for i in range(passLength):
-        for sign in symbols:
-            randSymb = random.choice(symbols)
+        randSymb = random.choice(symbols)
         fpassword.append(randSymb)
     return "".join(fpassword)
