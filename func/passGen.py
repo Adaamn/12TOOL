@@ -13,9 +13,14 @@ special = ["@", "#", "$", "%", "^", "&", "*", "(", ")", "!", "?", "_", "-", "+",
 symbols = list(words+numbers)+special
 
 def genPass(passLength):
-
-    fpassword = []
-    for i in range(passLength):
-        randSymb = random.choice(symbols)
-        fpassword.append(randSymb)
-    return "".join(fpassword)
+    if passLength > 0:
+        if passLength <= 100:
+            fpassword = []
+            for i in range(passLength):
+                randSymb = random.choice(symbols)
+                fpassword.append(randSymb)
+            print ("Generated password:","".join(fpassword))
+        else:
+            print("Only 100 symbols allowed.")
+    else:
+        print("More than 0 symbols required.")
