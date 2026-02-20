@@ -37,8 +37,8 @@ while True:
         usd, eur, czk, cryptoName = getPrice(crypto)
         if usd != None:
             print(f"\n--- Current price of {cryptoName}: ---")
-            print(f"USD: {usd}")
-            print(f"EUR: {eur}")
-            print(f"CZK: {czk}")
+            print(f"USD: {usd:,}")
+            print(f"EUR: {eur:,}")
+            print(f"CZK: {czk:,}")
     elif choice == 4:
         break
