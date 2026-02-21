@@ -1,4 +1,4 @@
-from func import getPrice, genPass, Scan
+from func import getPrice, genPass, Scan, pubIPCheck
 
 print(" __  __  _____  _   _  _   _ ")
 print("|  \/  || ____|| \ | || | | |")
@@ -10,7 +10,8 @@ print("")
 print("[1] - Password Generator")
 print("[2] - Cryptocurrency price")
 print("[3] - IPScan")
-print("[4] - Exit")
+print("[4] - Public IP info")
+print("[5] - Exit")
 print("")
 
 def intLoad(text):
@@ -41,4 +42,7 @@ while True:
         Scan()
 
     elif choice == 4:
+        pubIPCheck()
+
+    elif choice == 5:
         break
