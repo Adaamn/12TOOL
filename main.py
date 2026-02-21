@@ -1,5 +1,5 @@
 import os
-from func import getPrice, genPass, Scan
+from func import getPrice, genPass, Scan, pubIPCheck
 
 os.system('color c')
 
@@ -20,9 +20,10 @@ while True:
     print("")
 
     print("[1] - Password Generator")
-    print("[2] - Cryptocurrency price")
+    print("[2] - Cryptocurrency Price")
     print("[3] - IPScan")
-    print("[4] - Exit")
+    print("[4] - Public IP Check")
+    print("[5] - Exit")
     print("")
 
     choice = intLoad("\nEnter your choice: ")
@@ -50,6 +51,11 @@ while True:
         os.system('cls')
 
     elif choice == 4:
+        pubIPCheck()
+        input("\nClick enter to continue..")
+        os.system('cls')
+
+    elif choice == 5:
         break
 
     else:
