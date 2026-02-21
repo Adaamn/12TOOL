@@ -7,6 +7,7 @@
 import os
 import socket
 import time
+import sys
 
 def Scan():
     try:
@@ -45,10 +46,19 @@ def Scan():
             else:
                 print(f"Checking: {targetIP}", end="\r")
 
-        if not os.path.exists("reports"):
-            os.makedirs("reports")
-        filename = os.path.join("reports", "network_scan_report.txt")
+        if getattr(sys, 'frozen', False):
+            application_path = os.path.dirname(sys.executable)
+        else:
+            application_path = os.path.dirname(os.path.abspath(__file__))
 
+        reports_dir = os.path.join(application_path, "reports")
+
+        if not os.path.exists(reports_dir):
+            os.makedirs(reports_dir)
+
+        filename = os.path.join(reports_dir, "network_scan_report.txt")
+
+        
         with open(filename, "w") as f:
             f.write("--- NETWORK SCAN REPORT --- \n\n")
             f.write(f"DATE: {time.ctime()}\n")
