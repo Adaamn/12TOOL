@@ -9,45 +9,59 @@ import socket
 import time
 
 def Scan():
-    hostname = socket.gethostname()
-    infoPack = socket.gethostbyname_ex(hostname)
-    allIPs = infoPack[2]
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        myIP = s.getsockname()[0]
+        s.close()
 
-    if len(allIPs) > 1:
-        myIP = allIPs[1]
-    else:
-        myIP = allIPs[0]
+        basIP = ".".join(myIP.split(".")[:-1]) + "."
+        print(f"\nDetected network: {basIP}X")
 
-    basIP = ".".join(myIP.split(".")[:-1]) + "."
-    print(f"\nDetected network: {basIP}")
+        is_windows = os.name == 'nt'
 
-    is_windows = os.name == 'nt'
+        zabraneIP = []
+        for i in range(1, 256):
+            targetIP = basIP + str(i)
+        
+            if is_windows:
+                cmd = f"ping -n 1 -w 300 {targetIP} > nul"
 
-    zabraneIP = []
-    for i in range(1, 256):
-        targetIP = basIP + str(i)
+            else:
+                cmd = f"ping -c 1 -W 1 {targetIP} > /dev/null 2>&1"
+            
+            response = os.system(cmd)
+            time.sleep(0.05)
+
+            
+            if response == 0:
+                try:
+                    name = socket.gethostbyaddr(targetIP)[0]
+                    print(f"IP {targetIP} is ACTIVE - {name}")
+                    zabraneIP.append(f"{targetIP} | {name}")
+                except socket.herror:
+                    print(f"IP {targetIP} is ACTIVE - Name: Unknown")
+                    zabraneIP.append(targetIP)
+            else:
+                print(f"Checking: {targetIP}", end="\r")
+
+        if not os.path.exists("reports"):
+            os.makedirs("reports")
+        filename = os.path.join("reports", "network_scan_report.txt")
+
+        with open(filename, "w") as f:
+            f.write("--- NETWORK SCAN REPORT --- \n\n")
+            f.write(f"DATE: {time.ctime()}\n")
+            f.write(f"TARGET IP: {basIP}X\n\n")
+
+            if zabraneIP:
+                for i in zabraneIP:
+                    f.write(f"[+] {i}\n")
+                f.write(f"\n{len(zabraneIP)} active IPs found.")
+            else:
+                f.write(f"No active IPs found.")
+        
+        print(f"\n\nScan completed, report saved in {filename}")
     
-        if is_windows:
-            cmd = f"ping -n 1 -w 100 {targetIP} > nul"
-
-        else:
-            cmd = f"ping -c 1 -W 100 {targetIP} > /dev/null 2>&1"
-        
-        response = os.system(cmd)
-        time.sleep(0.1)
-
-        
-        if response == 0:
-            try:
-                name = socket.gethostbyaddr(targetIP)[0]
-                print(f"IP {targetIP} is ACTIVE - {name}")
-                zabraneIP.append(targetIP)
-            except socket.herror:
-                print(f"IP {targetIP} is ACTIVE - Name: Unknown")
-                zabraneIP.append(targetIP)
-        else:
-            print(f"Checking: {targetIP}", end="\r")
-
-    print()
-    print(f"\n{len(zabraneIP)} WAS FOUND:")
-    print(f"List of active IPs: {', '.join(zabraneIP)}")
+    except Exception as e:
+        print(f"There was an error. - {e}")
