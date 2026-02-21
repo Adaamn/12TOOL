@@ -21,7 +21,7 @@ def pubIPCheck():
         print(f"Your location: {latitude}, {longitude}")
         print(f"Your city: {city}, {region}, {country}")
         print(f"Your ISP: {connection['isp']}, {connection['domain']}")
-        print(f"Map link: {maps_url}")
+        print(f"\nMap link: {maps_url}")
 
 
     except requests.exceptions.ConnectionError:

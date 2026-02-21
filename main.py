@@ -12,6 +12,8 @@ def intLoad(text):
     return num
 
 while True:
+    os.system('cls')
+
     print(" _  ____   _____   ___    ___   _     ")
     print("/ ||___ \ |_   _| / _ \  / _ \ | |    ")
     print("| |  __) |  | |  | | | || | | || |    ")
@@ -21,8 +23,8 @@ while True:
 
     print("[1] - Password Generator")
     print("[2] - Cryptocurrency Price")
-    print("[3] - IPScan")
-    print("[4] - Public IP Check")
+    print("[3] - Local IP Scan")
+    print("[4] - Public IP Scan")
     print("[5] - Exit")
     print("")
 
@@ -32,7 +34,6 @@ while True:
         passlength = intLoad("\nHow many symbols: ")
         genPass(passlength)
         input("\nClick enter to continue..")
-        os.system('cls')
 
     elif choice == 2:
         crypto = input("\nType a cryptocurrency: ").strip().lower()
@@ -43,20 +44,14 @@ while True:
             print(f"EUR: {eur:,}")
             print(f"CZK: {czk:,}")
         input("\nClick enter to continue..")
-        os.system('cls')
     
     elif choice == 3:
         Scan()
         input("\nClick enter to continue..")
-        os.system('cls')
 
     elif choice == 4:
         pubIPCheck()
         input("\nClick enter to continue..")
-        os.system('cls')
 
     elif choice == 5:
         break
-
-    else:
-        os.system('cls')
