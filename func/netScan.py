@@ -21,13 +21,22 @@ def Scan():
     basIP = ".".join(myIP.split(".")[:-1]) + "."
     print(f"\nDetected network: {basIP}")
 
+    is_windows = os.name == 'nt'
+
     zabraneIP = []
     for i in range(1, 256):
         targetIP = basIP + str(i)
     
-        response = os.system(f"ping -n 1 -w 100 {targetIP} > nul")
-        time.sleep(0.5)
+        if is_windows:
+            cmd = f"ping -n 1 -w 100 {targetIP} > nul"
 
+        else:
+            cmd = f"ping -c 1 -W 100 {targetIP} > /dev/null 2>&1"
+        
+        response = os.system(cmd)
+        time.sleep(0.1)
+
+        
         if response == 0:
             try:
                 name = socket.gethostbyaddr(targetIP)[0]
