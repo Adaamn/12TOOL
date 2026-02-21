@@ -51,8 +51,12 @@ while True:
         input("\nClick enter to continue..")
     
     elif choice == 3:
-        Scan()
-        input("\nClick enter to continue..")
+        confirm = input("Confirm local scan? (y/n): ").lower().strip()
+        if confirm == "y":
+            Scan()
+            input("\nClick enter to continue..")
+        else:
+            print("Scan cancelled.")
 
     elif choice == 4:
         pubIPCheck()
