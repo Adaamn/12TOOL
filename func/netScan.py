@@ -42,7 +42,7 @@ def Scan():
                     zabraneIP.append(f"{targetIP} | {name}")
                 except socket.herror:
                     print(f"IP {targetIP} is ACTIVE - Name: Unknown")
-                    zabraneIP.append(targetIP)
+                    zabraneIP.append(f"{targetIP} | Unknown")
             else:
                 print(f"Checking: {targetIP}", end="\r")
 
