@@ -1,33 +1,37 @@
-from func import getPrice, genPass, Scan, pubIPCheck
+import os
+from func import getPrice, genPass, Scan
 
-print(" __  __  _____  _   _  _   _ ")
-print("|  \/  || ____|| \ | || | | |")
-print("| |\/| ||  _|  |  \| || | | |")
-print("| |  | || |___ | |\  || |_| |")
-print("|_|  |_||_____||_| \_| \___/ ")
-print("")
-
-print("[1] - Password Generator")
-print("[2] - Cryptocurrency price")
-print("[3] - IPScan")
-print("[4] - Public IP info")
-print("[5] - Exit")
-print("")
+os.system('color c')
 
 def intLoad(text):
     while True:
         try:
             num = int(input(text))
             break
-        except ValueError: print("Numbers only.")
+        except ValueError: print("Numbers Only.")
     return num
 
 while True:
+    print(" _  ____   _____   ___    ___   _     ")
+    print("/ ||___ \ |_   _| / _ \  / _ \ | |    ")
+    print("| |  __) |  | |  | | | || | | || |    ")
+    print("| | / __/   | |  | |_| || |_| || |___ ")
+    print("|_||_____|  |_|   \___/  \___/ |_____|")
+    print("")
+
+    print("[1] - Password Generator")
+    print("[2] - Cryptocurrency price")
+    print("[3] - IPScan")
+    print("[4] - Exit")
+    print("")
+
     choice = intLoad("\nEnter your choice: ")
 
     if choice == 1:
         passlength = intLoad("\nHow many symbols: ")
-        print(f"Generated password: {genPass(passlength)}")
+        genPass(passlength)
+        input("\nClick enter to continue..")
+        os.system('cls')
 
     elif choice == 2:
         crypto = input("\nType a cryptocurrency: ").strip().lower()
@@ -37,12 +41,16 @@ while True:
             print(f"USD: {usd:,}")
             print(f"EUR: {eur:,}")
             print(f"CZK: {czk:,}")
+        input("\nClick enter to continue..")
+        os.system('cls')
     
     elif choice == 3:
         Scan()
+        input("\nClick enter to continue..")
+        os.system('cls')
 
     elif choice == 4:
-        pubIPCheck()
-
-    elif choice == 5:
         break
+
+    else:
+        os.system('cls')
