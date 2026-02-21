@@ -1,7 +1,9 @@
 import os
 from func import getPrice, genPass, Scan, pubIPCheck
 
-os.system('color c')
+is_windows = os.name == 'nt'
+if is_windows:
+    os.system('color c')
 
 def intLoad(text):
     while True:
@@ -12,7 +14,10 @@ def intLoad(text):
     return num
 
 while True:
-    os.system('cls')
+    if is_windows:
+        os.system('cls')
+    else:
+        os.system('clear')
 
     print(" _  ____   _____   ___    ___   _     ")
     print("/ ||___ \ |_   _| / _ \  / _ \ | |    ")
@@ -28,7 +33,7 @@ while True:
     print("[5] - Exit")
     print("")
 
-    choice = intLoad("\nEnter your choice: ")
+    choice = intLoad("Enter your choice: ")
 
     if choice == 1:
         passlength = intLoad("\nHow many symbols: ")
