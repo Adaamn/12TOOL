@@ -25,7 +25,11 @@ while True:
     print("| | / __/   | |  | |_| || |_| || |___ ")
     print("|_||_____|  |_|   \___/  \___/ |_____|")
     print("")
-
+    width = 38
+    version = "Version 1.0.0"
+    print(version.center(width))
+    print("")
+    print("")
     print("[1] - Password Generator")
     print("[2] - Cryptocurrency Price")
     print("[3] - Local IP Scan")
