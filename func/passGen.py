@@ -4,16 +4,12 @@
 # |  __/  / ___ \  ___) | ___) |  \ V  V /  | |_| ||  _ < | |_| |  | |_| || |___ | |\  |
 # |_|    /_/   \_\|____/ |____/    \_/\_/    \___/ |_| \_\|____/    \____||_____||_| \_|
 
-import random
+import random, string
 
-words = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-numbers = "0123456789"
-special = ["@", "#", "$", "%", "^", "&", "*", "(", ")", "!", "?", "_", "-", "+", "=", "[", "]", "{", "}", "<", ">", "/", "|", "\\", "~", ":", ";", ".", ","]
-
-symbols = list(words+numbers)+special
+symbols = string.ascii_letters+string.punctuation+string.digits
 
 def genPass(passLength):
-    if passLength > 0:
+    if passLength >= 3:
         if passLength <= 100:
             fpassword = []
             for i in range(passLength):
@@ -23,4 +19,4 @@ def genPass(passLength):
         else:
             print("Only 100 symbols allowed.")
     else:
-        print("More than 0 symbols required.")
+        print("At least 3 symbols required.")
